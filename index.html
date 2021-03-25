@@ -2,10 +2,28 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    <h1>(Lose At) Tic Tac Toe</h1>
+    <div id="gameboard">
+      <div class="cell" id="cell1"></div>
+      <div class="cell" id="cell2"></div>
+      <div class="cell" id="cell3"></div>
+      <div class="cell" id="cell4"></div>
+      <div class="cell" id="cell5"></div>
+      <div class="cell" id="cell6"></div>
+      <div class="cell" id="cell7"></div>
+      <div class="cell" id="cell8"></div>
+      <div class="cell" id="cell9"></div>
+      <svg height="600" width="600">
+        <line class="line vertical" id="verticalleft" x1="200" y1="0" x2="200" y2="600"></line>
+        <line class="line vertical" id="verticalright" x1="400" y1="0" x2="400" y2="600"></line>
+        <line class="line horizontal" id="horizontaltop" x1="0" y1="200" x2="600" y2="200"></line>
+        <line class="line horizontal" id="horizontalbottom" x1="0" y1="400" x2="600" y2="400"></line>
+        </svg>
+    </div>
     <script src="scripts.js"></script>
   </body>
 </html>
