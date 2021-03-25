@@ -2,6 +2,7 @@
 
 * {
     font-family: 'Nothing You Could Do', cursive;
+    user-select: none;
 }
 
 h1 {
@@ -28,6 +29,12 @@ h1 {
     z-index: -1;
 }
 
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 line, circle {
     stroke-width: 10;
 }
@@ -41,11 +48,23 @@ circle {
 
 .crossline {
     stroke: black;
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+}
+
+#reset {
+    cursor: pointer;
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 3rem;
+    display: block;
+    margin: 3rem auto;
 }
 
 /* grid animation styles */
 
-.gridline, .crossline, circle {
+.gridline, .crossline, circle, .fade {
     animation: .3s linear 1 forwards;
 }
 
@@ -93,14 +112,17 @@ circle {
 
 /* cross animation styles */
 
-.topleft {
-    animation-name: topleft;
-    transform-origin: top left;
+.crossline {
+    animation-name: crossdraw;
 }
 
-@keyframes topleft {
+.topright {
+    animation-delay: .3s;
+}
+
+@keyframes crossdraw {
     to {
-        width: 100%;
+        stroke-dashoffset: 0;
     }
 }
 
@@ -114,5 +136,18 @@ circle {
 @keyframes wipe {
     to {
         stroke-dashoffset: 0;
+    }
+}
+
+/* reset fade */
+
+.fade {
+    animation-name: fadeout;
+    animation-duration: .8s;
+}
+
+@keyframes fadeout {
+    to {
+        opacity: 0;
     }
 }

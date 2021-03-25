@@ -6,19 +6,10 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <h1>(Lose At) Tic Tac Toe</h1>
+    <h1>Tic Tac Toe</h1>
     <div id="gameboard">
-      <div class="cell" id="cell1">
-        <svg class="cross" height="200" width="200">
-          <line class="crossline topleft" x1="30" y1="30" x2="170" y2="170"></line>
-          <line class="crossline topright" x1="170" y1="30" x2="30" y2="170"></line>
-        </svg>
-      </div>
-      <div class="cell" id="cell2">
-        <svg id="circle" height="200" width="200">
-          <circle class="circleline" cx="100" cy="100" r="70" transform="rotate(-90 100 100)"></circle>
-        </svg>
-      </div>
+      <div class="cell" id="cell1"></div>
+      <div class="cell" id="cell2"></div>
       <div class="cell" id="cell3"></div>
       <div class="cell" id="cell4"></div>
       <div class="cell" id="cell5"></div>
@@ -33,6 +24,22 @@
         <line class="gridline horizontal" id="horizontalbottom" x1="0" y1="400" x2="600" y2="400"></line>
         </svg>
     </div>
+    <button id="reset">Reset</button>
     <script src="scripts.js"></script>
   </body>
 </html>
+
+<!--
+  
+template cross:
+
+<svg class="cross" height="200" width="200">
+  <line class="crossline topleft" x1="30" y1="30" x2="170" y2="170"></line>
+  <line class="crossline topright" x1="170" y1="30" x2="30" y2="170"></line>
+</svg>
+
+template circle:
+
+<svg id="circle" height="200" width="200">
+  <circle class="circleline" cx="100" cy="100" r="70" transform="rotate(-90 100 100)"></circle>
+</svg>
