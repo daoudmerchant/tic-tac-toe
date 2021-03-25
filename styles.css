@@ -8,7 +8,11 @@
 h1 {
     font-size: 4rem;
     text-align: center;
-    margin: 50px;
+    margin: 30px auto 0;
+}
+
+.playerName {
+    transition: box-shadow .5s linear;
 }
 
 #gameboard {
@@ -29,14 +33,38 @@ h1 {
     z-index: -1;
 }
 
-.cell {
+.cell, .buttonContainer {
     display: flex;
-    justify-content: center;
+}
+
+.cell {
     align-items: center;
 }
 
+.buttonContainer {
+    height: 100px;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+input {
+    border: none;
+    width: 350px;
+    outline: none;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+input:disabled {
+    user-select: none;
+    background: none;
+    color: black;
+}
+
+
 line, circle {
     stroke-width: 10;
+    z-index: 1;
 }
 
 circle {
@@ -52,14 +80,21 @@ circle {
     stroke-dashoffset: 200;
 }
 
-#reset {
+button {
     cursor: pointer;
     border: none;
     background: none;
     outline: none;
     font-size: 3rem;
     display: block;
-    margin: 3rem auto;
+}
+
+button:disabled {
+    cursor: default;
+}
+
+#reset {
+    margin: 30px auto;
 }
 
 /* grid animation styles */
@@ -139,7 +174,7 @@ circle {
     }
 }
 
-/* reset fade */
+/* reset fade (toggle style) */
 
 .fade {
     animation-name: fadeout;
@@ -150,4 +185,10 @@ circle {
     to {
         opacity: 0;
     }
+}
+
+/* toggle styles */
+
+.playerTurn {
+    box-shadow: 0 4px black;
 }

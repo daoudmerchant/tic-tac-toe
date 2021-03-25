@@ -7,16 +7,43 @@
   </head>
   <body>
     <h1>Tic Tac Toe</h1>
+    <!-- <div id="playerChoice" class="buttoncontainer">
+      <button id="pvp">Player vs Player</button>
+      <button id="pvc">Player vs Computer</button>
+    </div> -->
+    <div id="namePlayers" class="buttonContainer">
+      <input type="text" class="playerName" id="player1name" maxlength="20" placeholder="Enter Player 1 name">
+      <button id="startpvp">Start</button>
+      <input type="text" class="playerName" id="player2name" maxlength="20" placeholder="Enter Player 2 name">
+    </div>
     <div id="gameboard">
-      <div class="cell" id="cell1"></div>
-      <div class="cell" id="cell2"></div>
-      <div class="cell" id="cell3"></div>
-      <div class="cell" id="cell4"></div>
-      <div class="cell" id="cell5"></div>
-      <div class="cell" id="cell6"></div>
-      <div class="cell" id="cell7"></div>
-      <div class="cell" id="cell8"></div>
-      <div class="cell" id="cell9"></div>
+      <div class="cell">
+        <svg class="svgCell" width="200" height="200" data-row="0" data-column="a"></svg>
+      </div>
+      <div class="cell">
+        <svg class="svgCell" width="200" height="200" data-row="0" data-column="b"></svg>
+      </div>
+      <div class="cell">
+        <svg class="svgCell" width="200" height="200" data-row="0" data-column="c"></svg>
+      </div>
+      <div class="cell">
+        <svg class="svgCell" width="200" height="200" data-row="1" data-column="a"></svg>
+      </div>
+      <div class="cell">
+        <svg class="svgCell" width="200" height="200" data-row="1" data-column="b"></svg>
+      </div>
+      <div class="cell">
+        <svg class="svgCell" width="200" height="200" data-row="1" data-column="c"></svg>
+      </div>
+      <div class="cell">
+        <svg class="svgCell" width="200" height="200" data-row="2" data-column="a"></svg>
+      </div>
+      <div class="cell">
+        <svg class="svgCell" width="200" height="200" data-row="2" data-column="b"></svg>
+      </div>
+      <div class="cell">
+        <svg class="svgCell" width="200" height="200" data-row="2" data-column="c"></svg>
+      </div>
       <svg id="grid" height="600" width="600">
         <line class="gridline vertical" id="verticalleft" x1="200" y1="0" x2="200" y2="600"></line>
         <line class="gridline vertical" id="verticalright" x1="400" y1="0" x2="400" y2="600"></line>
