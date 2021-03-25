@@ -11,6 +11,7 @@ h1 {
 }
 
 #gameboard {
+    background-color: transparent;
     position: relative;
     margin-right: auto;
     margin-left: auto;
@@ -19,22 +20,32 @@ h1 {
     grid-template-rows: 1fr 1fr 1fr;
     height: 600px;
     width: 600px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
-svg {
+#grid {
     position: absolute;
-    z-index: 1;
+    z-index: -1;
 }
 
-.line {
-    stroke: transparent;
+line, circle {
     stroke-width: 10;
 }
 
-/* animation styles */
+circle {
+    stroke-dasharray: 440;
+    stroke-dashoffset: 440;
+    stroke: black;
+    fill: transparent;
+}
 
-.line {
+.crossline {
+    stroke: black;
+}
+
+/* grid animation styles */
+
+.gridline, .crossline, circle {
     animation: .3s linear 1 forwards;
 }
 
@@ -77,5 +88,31 @@ svg {
     to {
         stroke: black;
         transform: scaleX(1);
+    }
+}
+
+/* cross animation styles */
+
+.topleft {
+    animation-name: topleft;
+    transform-origin: top left;
+}
+
+@keyframes topleft {
+    to {
+        width: 100%;
+    }
+}
+
+/* circle animation styles */
+
+circle {
+    animation-duration: .5s;
+    animation-name: wipe;
+}
+
+@keyframes wipe {
+    to {
+        stroke-dashoffset: 0;
     }
 }
