@@ -1,57 +1,10 @@
-
 let stateOfBoard = [
     { "a":null, "b":null, "c":null },
     { "a":null, "b":null, "c":null },
     { "a":null, "b":null, "c":null }
 ];
 
-// winner function
-
-function checkBoardState(gameboard) {
-    let aCol = "", bCol = "", cCol = "",
-        diagL = "", diagR = "",
-        filledSquares = 0,
-        gameState = {};
-    const checkedVerticals = { aCol, bCol, cCol, diagL, diagR };
-    gameboard.forEach((row, i) => {
-        // check rows
-        if ((row.a !== null) && (row.a === row.b && row.b === row.c)) {
-            const rowProp = `${i}Row`;
-            gameState[rowProp] = `${row.a}${row.b}${row.c}`;
-        }
-
-        // fill diagonal values
-        const rowPropUnicode = 61 + i; // moves forwards one character each row
-        const rowPropDiagL = `0x00${rowPropUnicode}`;
-        const diagLprop = String.fromCodePoint(rowPropDiagL);
-        checkedVerticals["diagL"] += row[diagLprop];
-        const lastPropUnicode = 60 + gameboard.length;
-        const rowPropDiagR = `0x00${lastPropUnicode - i}`; // moves back one character each row
-        const diagRprop = String.fromCodePoint(rowPropDiagR);
-        checkedVerticals["diagR"] += row[diagRprop];
-
-        // fill column values
-        for (let cell in row) {
-            checkedVerticals[`${cell}Col`] += row[cell];
-            // count squares filled
-            if (row[cell]) { filledSquares++ };
-        }
-    });
-    for (let line in checkedVerticals) {
-        if ((checkedVerticals[line] === "XXX") ||
-            (checkedVerticals[line] === "OOO")) {
-            gameState[line] = checkedVerticals[line];
-        }
-    }
-    gameState.filledSquares = filledSquares;
-    return gameState;
-}
-
-
-console.table(checkBoardState(stateOfBoard));
-
-//
-function clearBoard() {
+function clearBoard() { // returns fresh array
     return [
         { "a":null, "b":null, "c":null },
         { "a":null, "b":null, "c":null },
@@ -59,46 +12,58 @@ function clearBoard() {
     ]
 }
 
-// PLAYER object
-
-function makePlayerModule() {
-    function makePlayer(number, name) {
-        const symbol = (number === 1) ? "X" : "O";
-        return { name, number, symbol }
-    }
-    const player1 = makePlayer(1, player1entry.value);
-    const player2 = makePlayer(2, player2entry.value);
-    
-
-}
-
 // make players
 
 
-const player1entry = document.querySelector("#player1name");
-const player2entry = document.querySelector("#player2name");
 const startPvp = document.querySelector("#startpvp");
 startPvp.addEventListener('click', playGame);
 
 function playGame() {
-    if (!player1entry.value || !player2entry.value) {
-        return;
-    }
-    
-    function switchPlayerDisplay() {
-        if (!player1entry.classList.contains("playerTurn") ||
-            !player2entry.classList.contains("playerTurn")) {
-                player1entry.classList.add("playerTurn");
-        } else {
-            player1entry.classList.toggle("playerTurn");
-            player2entry.classList.toggle("playerTurn");
+    function setPlayers() {
+
+        function makePlayer(number, name) { // player factory returning object
+            const symbol = (number === 1) ? "X" : "O";
+            return { name, number, symbol }
+        }
+
+        function createPlayers() {// use makePlayer() tu return two player objects
+            const player1entry = document.querySelector("#player1name");
+            const player2entry = document.querySelector("#player2name");
+
+            if (!player1entry.value || !player2entry.value) {
+                return;
+            }
+            const player1 = makePlayer(1, player1entry.value);
+            const player2 = makePlayer(2, player2entry.value);
+            return { player1, player2 };
+        }
+
+            function switchPlayerDisplay() { // style player names above grid
+                function underlinePlayer() { // underline current player
+                    if (!player1entry.classList.contains("playerTurn") ||
+                        !player2entry.classList.contains("playerTurn")) {
+                            return () => {
+                                return setTimeout(() => player1entry.classList.add("playerTurn"), 500);
+                                };
+                    } else {
+                        return () => {
+                            player1entry.classList.toggle("playerTurn");
+                            player2entry.classList.toggle("playerTurn");
+                        };
+                    }
+                }
+                function setPlayerNames() {
+                    player1entry.disabled = true;
+                    player2entry.disabled = true;
+                    startPvp.disabled = true;
+                    startPvp.classList.add("fade");
+                    underlinePlayer();
+                }
+                return { underlinePlayer, setPlayerNames }
+            }
         }
     }
-    player1entry.disabled = true;
-    player2entry.disabled = true;
-    startPvp.disabled = true;
-    startPvp.classList.add("fade");
-    setTimeout(() => switchPlayerDisplay(), 500);
+    
 
 }
 
@@ -114,6 +79,7 @@ const reset = document.querySelector("#reset");
 reset.addEventListener('click', resetScreen);
 
 function playerTurn() {
+    console.log();
     stateOfBoard[this.dataset.row][this.dataset.column] = "X";
     showGameBoard(stateOfBoard);
 }
@@ -188,6 +154,7 @@ function showGameBoard(gameboard) {
             return;
         }
         let cellValue = gameboard[cell.dataset.row][cell.dataset.column];
+        console.log(cellValue);
         if (cellValue === "X") {
             insertShape.cross(cell);
         } else if (cellValue === "O") {
@@ -203,7 +170,7 @@ function resetScreen() {
     graphics.forEach(graphic => {
         graphic.classList.add("fade");
     });
-    const currentGridLines = document.querySelectorAll(".gridline"); // already been queried :(
+    const currentGridLines = document.querySelectorAll(".gridline");
     setTimeout(() => {
         gridCells.forEach(gridCell => {
             while (gridCell.lastChild) {
