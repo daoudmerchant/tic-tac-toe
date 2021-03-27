@@ -1,4 +1,3 @@
-
 let stateOfBoard = [
     { "a":null, "b":null, "c":null },
     { "a":null, "b":null, "c":null },
@@ -47,10 +46,8 @@ function checkBoardState(gameboard) {
     return gameState;
 }
 
+// *** EVERYTHING BELOW HERE TO BE REDONE ***
 
-console.table(checkBoardState(stateOfBoard));
-
-//
 function clearBoard() {
     return [
         { "a":null, "b":null, "c":null },
