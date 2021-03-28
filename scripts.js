@@ -176,7 +176,7 @@ const game = (function() {
                     const lastCode = aCode + Math.sqrt(_gridCells.length) - 1;
                     function redden(...lines) {
                         lines.forEach(line => line.classList.add("redden"));
-                    }
+                    };
                     if (currentState.hasOwnProperty("diagL")) {
                         _gridCells.forEach(gridCell => {
                             const colUnicode = aCode + Number(gridCell.dataset.row);
@@ -216,11 +216,12 @@ const game = (function() {
                         };
                     };
                     players.underlineWinnerRed();
-                }
-            }
+                };
+            };
+            
             showWinningLines();
             _firstPlayer = (_playerTurn === 1) ? 2 : 1;
-        }
+        };
     };
 
     function checkBoardState(gameboard) {
@@ -252,7 +253,7 @@ const game = (function() {
                 checkedVerticals[`${cell}Col`] += row[cell];
                 // count squares filled
                 if (row[cell]) { filledSquares++ };
-            }
+            };
         });
         for (let line in checkedVerticals) {
             if ((checkedVerticals[line] === "XXX") ||
@@ -261,11 +262,11 @@ const game = (function() {
                         gameState = {};
                     };
                     gameState[line] = checkedVerticals[line];
-            }
-        }
+            };
+        };
         if (filledSquares === 9 && !gameState) {
             gameState = "tie"
-        }
+        };
         console.table(gameState);
         return gameState;
     }
@@ -281,8 +282,9 @@ const game = (function() {
         function emptyCell(cell) {
             while (cell.lastChild) {
                 cell.removeChild(cell.lastChild);
-            }
-        }
+            };
+        };
+
         setTimeout(() => {
             _gridCells.forEach(gridCell => {
                 emptyCell(gridCell);
@@ -290,15 +292,15 @@ const game = (function() {
             graphics.forEach(graphic => {
                 graphic.classList.remove("fade");
                 graphic.classList.remove("greyed")
-            })
+            });
             gridLines.forEach(gridLine => {
                 const newGridLine = gridLine.cloneNode();
                 const grid = document.querySelector("#grid");
                 gridLine.remove();
                 grid.appendChild(newGridLine);
-            })
+            });
         }, 1000);
-    }
+    };
 
     function reset() {
         if (!_firstPlayer) { return }; // no first player set means game not yet started
@@ -308,7 +310,7 @@ const game = (function() {
         _firstPlayer = (_firstPlayer === 1) ? 2 : 1;
         setTimeout(players.underline, 1000);
         _gameOver = false;
-    }
+    };
 
     return { start, reset, takeTurn, turn }
 })();

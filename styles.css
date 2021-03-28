@@ -174,13 +174,6 @@ circle {
     }
 }
 
-/* reset fade (toggle style) */
-
-.fade {
-    transition: opacity .8s linear;
-    opacity: 0;
-}
-
 /* toggle styles */
 
 .underline {
@@ -199,4 +192,11 @@ circle {
 .redden {
     transition: stroke .5s linear;
     stroke: red;
+}
+
+/* reset fade (toggle style) */
+
+.fade {
+    transition: opacity .8s linear;
+    opacity: 0;
 }
