@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap');
 
 * {
-    font-family: 'Nothing You Could Do', cursive;
+    font-family: 'Reenie Beanie', cursive;
     user-select: none;
 }
 
 h1 {
-    font-size: 4rem;
+    font-size: 4.5rem;
     text-align: center;
     margin: 30px auto 0;
 }
@@ -51,7 +51,7 @@ input {
     border: none;
     width: 350px;
     outline: none;
-    font-size: 1.8rem;
+    font-size: 3rem;
     text-align: center;
 }
 
@@ -85,7 +85,7 @@ button {
     border: none;
     background: none;
     outline: none;
-    font-size: 3rem;
+    font-size: 4rem;
     display: block;
 }
 
@@ -94,7 +94,7 @@ button:disabled {
 }
 
 #reset {
-    margin: 30px auto;
+    margin: 50px auto;
 }
 
 /* grid animation styles */
@@ -177,18 +177,26 @@ circle {
 /* reset fade (toggle style) */
 
 .fade {
-    animation-name: fadeout;
-    animation-duration: .8s;
-}
-
-@keyframes fadeout {
-    to {
-        opacity: 0;
-    }
+    transition: opacity .8s linear;
+    opacity: 0;
 }
 
 /* toggle styles */
 
-.playerTurn {
+.underline {
     box-shadow: 0 4px black;
+}
+
+.greyed {
+    transition: opacity .5s linear;
+    opacity: 0.2;
+}
+
+.winner {
+    box-shadow: 0 4px red;
+}
+
+.redden {
+    transition: stroke .5s linear;
+    stroke: red;
 }
