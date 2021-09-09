@@ -1,4 +1,6 @@
-# Brief
+# [Live Demo](https://daoudmerchant.github.io/tic-tac-toe/)
+
+## Brief
 
 To code a functional game of Tic Tac Toe, with player names and the ability to reset.
 
